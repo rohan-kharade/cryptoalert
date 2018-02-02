@@ -6,6 +6,9 @@ import time
 
 # check_price function is used to get price from different trading platform APIs
 # def select_coin(): // currency selection to get notified
+print ("Select Coin : \n\t ETH \n\t BTC \n\t XRP \n\t LTC \n\t BCH \n"),
+coin = input()
+print ("Selected coin :-", coin)
 
 def check_price_BTC_ETC_koinex():
 	Koinex_api = 'https://koinex.in/api/ticker'
@@ -25,12 +28,12 @@ def sendSMS(apikey, numbers, sender, message):
     fr = f.read()
     return(fr)
 
-
+Bitcoin_Sell = 0.0
 while (Bitcoin_Sell < 140000.0):
-	Bitcoin_Sell, ETH_Sell = check_price_Bitcoin_koinex()
+	Bitcoin_Sell, ETH_Sell = check_price_BTC_ETC_koinex()
 	print ("Bitcoin Sell :-",Bitcoin_Sell,"INR")
 	print ("ETH Sell     :-",ETH_Sell,"INR")
-	time.sleep (2)
+	time.sleep (10)
 
 resp =  sendSMS('bAZAwXcHereYourSMSapikeyBmSBy7512njuIAwR1chB676', '919689164280',
     'you@email.com', Bitcoin_Sell)
