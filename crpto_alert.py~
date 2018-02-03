@@ -35,7 +35,6 @@ def check_price_BTC():
         return BTC_BuyUcoin,BTC_Koinex
 
 def check_price_ETC():
-        print("hello")
 
 if coin == 'XRP' :
         print ('hi')
