@@ -15,6 +15,8 @@ api_koinex = 'https://koinex.in/api/ticker'
 api_buyucoin = 'https://www.buyucoin.com/api/v1/crypto/'
 api_ethex = 'https://api.ethexindia.com/ticker/'
 
+bch_bid_buyucoin,bch_bid_koinex = 0.0
+bid_value = 1.0
 # check_price function is used to get price from different trading platform APIs
 def check_price_XRP():
         i = requests.get(api_buyucoin)
@@ -34,21 +36,60 @@ def check_price_BTC():
         BTC_Koinex=l['prices']['BTC']
         return BTC_BuyUcoin,BTC_Koinex
 
-def check_price_ETC():
-        print("hello")
+def check_price_ETH():
+        i = requests.get(api_buyucoin)
+        j = i.json()
+        ETH_BuyUcoin=j['BuyUcoin_data'][0]['eth_buy_price']
+        k = requests.get(api_koinex)
+        l = k.json()
+        ETH_Koinex=l['prices']['ETH']
+        return ETH_BuyUcoin,ETH_Koinex
+
+def check_price_LTC():
+        i = requests.get(api_buyucoin)
+        j = i.json()
+        LTC_BuyUcoin=j['BuyUcoin_data'][0]['ltc_buy_price']
+        k = requests.get(api_koinex)
+        l = k.json()
+        LTC_Koinex=l['prices']['LTC']
+        return LTC_BuyUcoin,LTC_Koinex
+
+def check_price_BCH():
+        while (bch_bid_buyucoin < bid_value):
+              i = requests.get(api_buyucoin)
+              j = i.json()
+              BCH_BuyUcoin=j['BuyUcoin_data'][0]['bcc_buy_price']
+              k = requests.get(api_koinex)
+              l = k.json()
+              BCH_Koinex=l['prices']['BCH']
+        return BCH_BuyUcoin,BCH_Koinex
 
 if coin == 'XRP' :
-        print ('hi')
         xrp_bid_buyucoin,xrp_bid_koinex =  check_price_XRP()
-       # print ("ETH bid BTCX   :-",xrp_bid_btcx,"INR")
         print ("XRP buy Koinex     :-",xrp_bid_koinex,"INR")
         print ("XRP buy Buyucoin   :-",xrp_bid_buyucoin,"INR")
 
 elif coin == 'BTC' :
         btc_bid_buyucoin,btc_bid_koinex =  check_price_BTC()
-       # print ("ETH bid BTCX   :-",xrp_bid_btcx,"INR")
         print ("BTC buy Koinex     :-",btc_bid_koinex,"INR")
         print ("BTC buy Buyucoin   :-",btc_bid_buyucoin,"INR")
+
+elif coin == 'ETH' :
+        eth_bid_buyucoin,eth_bid_koinex =  check_price_ETH()
+        print ("ETH buy Koinex     :-",eth_bid_koinex,"INR")
+        print ("ETH buy Buyucoin   :-",eth_bid_buyucoin,"INR")
+
+elif coin == 'LTC' :
+        ltc_bid_buyucoin,ltc_bid_koinex =  check_price_LTC ()
+        print ("LTC buy Koinex     :-",ltc_bid_koinex,"INR")
+        print ("LTC buy Buyucoin   :-",ltc_bid_buyucoin,"INR")
+
+elif coin == 'BCH' :
+        bch_bid_buyucoin,bch_bid_koinex =  check_price_BCH ()
+        print ("BCH buy Koinex     :-",bch_bid_koinex,"INR")
+        print ("BCH buy Buyucoin   :-",bch_bid_buyucoin,"INR")
+        print ("Enter bid value"),
+        bid_value = input()
 
 # send_SMS function is used to send trading alert via SMS using textlocal's SMS gateway API
 
