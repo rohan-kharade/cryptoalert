@@ -91,29 +91,23 @@ elif coin == 'BCH' :
         print ("Enter bid value"),
         bid_value = input()
 
-# send_SMS function is used to send trading alert via SMS using textlocal's SMS gateway API
-
+# send_SMS function is used to send trading alert via SMS using Textlocal's SMS gateway API
 def sendSMS(apikey, numbers, sender, message):
-    data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,
+    coin_data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,
         'message' : message, 'sender': sender})
-    data = data.encode('utf-8')
+    coin_data = data.encode('utf-8')
     request = urllib.request.Request("https://api.textlocal.in/send/?")
-    f = urllib.request.urlopen(request, data)
+    f = urllib.request.urlopen(request, coin_data)
     fr = f.read()
     return(fr)
 
-Bitcoin_Sell = 0.0
-while (Bitcoin_Sell < 140000.0):
-	print ("Here in while loop for 10 s")
-	time.sleep (10)
+#while (Bitcoin_Sell < 140000.0):
+#	print ("Here in while loop for 10 s")
+#	time.sleep (10)
 
-
-
-resp =  sendSMS('bAZAwXcHereYourSMSapikeyBmSBy7512njuIAwR1chB676', '919689164280',
+resp =  sendSMS('bAZAwXcHereYourSMSapikeyBmSBy7512njuIAwR1chB676', '919616459876543457',
     'you@email.com', Bitcoin_Sell)
 print (resp)
 
 # learn_trade(): function to understand progress curve of trading and notify subscriber accordingly	
-
-
-
+# learn_trade():
