@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, 
 import requests
 import json
 
@@ -14,7 +14,8 @@ def select_currency():
       user = request.form['nm']
       if user == 'ETH':
          bid_koinex =  check_price_ETH()		
-      return 'You have selected %s having bid value INR %s' % (user, bid_koinex)
+      #return 'You have selected %s having bid value INR %s' % (user, bid_koinex)
+	  return  render_templatete(crypto_alert.html)
    else:
       user = request.args.get('nm')
       return 'You have selected %s having bid value %s' % user % bid_koinex
