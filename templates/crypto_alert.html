@@ -1,18 +1,17 @@
 <html>
    <body>
       <form action = "http://localhost:9211/" method = "post">
-	<br/><br/><br/><label><center>Select Cryptocurrency  
-	<p><input list="crypto_currencies" name="nm" /></label><center><p>
-		<datalist id="crypto_currencies">
-	 	  <option value="ETH">
-	 	  <option value="LTC">
-	 	  <option value="BTC">
-	 	  <option value="BCH">
-	  	  <option value="XRP">
-		  <option value="REQ">
-         </datalist>
+	<br/><br/><br/><center>
+         <select name = "nm">
+            <option value = "Select Cryptocurrency" selected>Select Cryptocurrency </option>
+            <option value = "ETH">ETH</option>
+            <option value = "LTC">LTC</option>
+            <option value = "BTC">BTC</option>
+            <option value = "BCH">BCH</option>
+            <option value = "XRP">XRP</option>
+         </select>
          <p><input type = "submit" value = "Check Trading Price" /></p>
-         <p>Price for  {{ coin }} Koinex : {{ price_koinex }} BuyUcoin : {{price_buyucoin}}</p><br/><br/><br/>
+         <p><center>Price for  {{ coin }} Koinex : {{ price_koinex }} BuyUcoin : {{price_buyucoin}}</p><br/><br/><br/>
          <label><center> Set Bid  
          <p><input type = "text" name = "mn" /></p>
          <label><center> Mobile Number  
