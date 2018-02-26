@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request, 
+from flask import Flask,render_template, redirect, url_for, request 
 import requests
 import json
 
@@ -11,11 +11,12 @@ app = Flask(__name__)
 @app.route("/",methods = ['POST', 'GET'])
 def select_currency():
    if request.method == 'POST':
-      user = request.form['nm']
-      if user == 'ETH':
-         bid_koinex =  check_price_ETH()		
+      coin = request.form['nm']
+      if coin == 'ETH':
+          bid_koinex =  check_price_ETH()
+          templateData = {'coin': coin,'price': bid_koinex}		
       #return 'You have selected %s having bid value INR %s' % (user, bid_koinex)
-	  return  render_templatete(crypto_alert.html)
+      return  render_template('crypto_alert.html',**templateData)
    else:
       user = request.args.get('nm')
       return 'You have selected %s having bid value %s' % user % bid_koinex
